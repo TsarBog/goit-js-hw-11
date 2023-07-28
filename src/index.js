@@ -2,6 +2,7 @@ import axios from 'axios';
 import Notiflix from 'notiflix';
 import 'simplelightbox/dist/simple-lightbox.min.css';
 import { createMarkup } from './createMarkup';
+import SimpleLightbox from 'simplelightbox';
 
 
 
