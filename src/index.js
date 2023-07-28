@@ -33,11 +33,11 @@ selectors.loadMore.addEventListener('click', handlerLoadMore);
 async function handlerFormChange(e) {
   e.preventDefault();
   currentQuery = selectors.inputEl.value.trim();
-  currentPage = 1;
+  currentPage +=1;
 
   clearGalery();
   await fetchData();
-  lightbox.refresh();
+
 }
 
 async function fetchData() {
@@ -50,6 +50,7 @@ async function fetchData() {
     Notiflix.Notify.failure(
       'Sorry! An error occurred while getting the images. Please try again later'
     );
+
   }
 }
 
@@ -64,6 +65,7 @@ function chackFatchResult(data) {
     createMarkup(hits);
     if (currentPage * PER_PAGE <= totalHits) {
       showLoadMoreBtn();
+        lightbox.refresh()
     } else {
       hideLoadMoreBtn();
       Notiflix.Notify.info(
@@ -102,6 +104,7 @@ async function handlerLoadMore() {
   await fetchData();
 }
 
+
 async function fetchImages(requestUrl) {
   try {
     const response = await axios.get(requestUrl);
@@ -110,6 +113,7 @@ async function fetchImages(requestUrl) {
   } catch (error) {
     console.error(error);
   }
+ 
 }
 
 
