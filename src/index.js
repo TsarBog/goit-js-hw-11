@@ -3,6 +3,8 @@ import Notiflix from 'notiflix';
 import 'simplelightbox/dist/simple-lightbox.min.css';
 import { createMarkup } from './createMarkup';
 
+
+
 const selectors = {
   formEl: document.querySelector('.search-form'),
   inputEl: document.querySelector('input'),
@@ -18,6 +20,12 @@ let currentPage = 1;
 let currentQuery = '';
 let requestUrl = '';
 
+ const lightbox = new SimpleLightbox('.gallery a', {
+    captions: true,
+    captionsData: 'alt',
+    captionDelay: 250,
+  });
+
 selectors.formEl.addEventListener('submit', handlerFormChange);
 selectors.loadMore.addEventListener('click', handlerLoadMore);
 
@@ -28,6 +36,7 @@ async function handlerFormChange(e) {
 
   clearGalery();
   await fetchData();
+  lightbox.refresh();
 }
 
 async function fetchData() {
@@ -89,7 +98,7 @@ function showLoadMoreBtn() {
 
 async function handlerLoadMore() {
   currentPage += 1;
-  await fetchSearchInData();
+  await fetchData();
 }
 
 async function fetchImages(requestUrl) {
@@ -101,3 +110,6 @@ async function fetchImages(requestUrl) {
     console.error(error);
   }
 }
+
+
+

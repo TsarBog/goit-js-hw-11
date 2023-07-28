@@ -2,6 +2,8 @@ import SimpleLightbox from 'simplelightbox';
 
 const galleryEl = document.querySelector('.gallery');
 
+
+
 export function createMarkup(images) {
   const markup = images
     .map(
@@ -40,9 +42,4 @@ export function createMarkup(images) {
     .join('');
 
   galleryEl.insertAdjacentHTML('beforeend', markup);
-  const lightbox = new SimpleLightbox('.gallery a', {
-    captions: true,
-    captionsData: 'alt',
-    captionDelay: 250,
-  });
 }
